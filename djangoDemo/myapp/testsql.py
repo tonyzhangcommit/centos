@@ -49,20 +49,26 @@ cursor = conn.cursor()
 # cursor.execute(sql % data)
 # print("删除了%s条数据" %cursor.rowcount)
 # 事务处理
-sql_1 = "update trade set saving = saving + 150,expend = expend + 300,income = income + 600 where id = 1"
-sql_2 = "update trade set saving = saving * 100,expend = expend + 100,income = income + 200 where id = 2"
-sql_3 = "update trade set saving = saving + 150,expend = expend + 900,income = income + 10000 where id = 3"
-try:
-    cursor.execute(sql_1)
-    cursor.execute(sql_2)
-    cursor.execute(sql_3)
-except Exception as e:
-    conn.rollback()
-    print(e)
-    print('事务失败')
-else:
-    conn.commit()
-    print("事务提交")
+# sql_1 = "update trade set saving = saving + 150,expend = expend + 300,income = income + 600 where id = 1"
+# sql_2 = "update trade set saving = saving * 100,expend = expend + 100,income = income + 200 where id = 2"
+# sql_3 = "update trade set saving = saving + 150,expend = expend + 900,income = income + 10000 where id = 3"
+# try:
+#     cursor.execute(sql_1)
+#     cursor.execute(sql_2)
+#     cursor.execute(sql_3)
+# except Exception as e:
+#     conn.rollback()
+#     print(e)
+#     print('事务失败')
+# finally:
+#     conn.commit()
+#     print("事务提交")
+# 测试
+sql = 'select * from  employees'
+cursor.execute(sql)
+for i in cursor.fetchall():
+    print(i)
+
 # 关闭游标
 cursor.close()
 # 关闭连接
